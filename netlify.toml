@@ -1,0 +1,30 @@
+# Plain static site: no build step, Netlify publishes the repo root.
+[build]
+  publish = "."
+
+# Leftover WordPress default URLs
+[[redirects]]
+  from = "/sample-page/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/hello-world/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/feed/*"
+  to = "/"
+  status = 301
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
